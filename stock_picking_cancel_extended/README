@@ -1,0 +1,25 @@
+
+
+1) v 12.0.0.2
+
+-> Solve issue of  wrong qty update on purchase order cancel.
+---> unreserve quantity issue 
+
+
+Date: 07/06/2019
+Version:12.0.0.4
+Issue:- done state picking not going to cancel.
+super not call in unlink method 
+
+
+version : 12.0.0.6
+
+issue :- quantity was not updated properly in stock quants  
+
+
+version : 12.0.0.7
+ -- > deleting stock journal entries on cancel button 
+
+
+version : 12.0.0.8
+ -- > fIXED SINGLETON ERROR

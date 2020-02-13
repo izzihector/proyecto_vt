@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+customer_vendor_category,Customer/Vendor Category,model_customer_vendor_category,base.group_user,1,1,1,0
+customer_vendor_category_sale_manger,Customer/Vendor Category,model_customer_vendor_category,sales_team.group_sale_manager,1,1,1,1

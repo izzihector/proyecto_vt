@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+        <record id="view_payroll_statement_lines_tree" model="ir.ui.view">
+            <field name="name">view.payroll.statement.lines.tree</field>
+            <field name="model">payroll.statement.lines</field>
+            <field name="arch" type="xml">
+                <tree string="Payroll Statement">
+                    <field name="employee_id"/>
+                    <field name="department_id"/>
+                    <field name="month"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="view_payroll_statement_filter" model="ir.ui.view">
+            <field name="name">view.payroll.statement.filter</field>
+            <field name="model">payroll.statement.lines</field>
+            <field name="arch" type="xml">
+                <search string="Search Payroll Statement">
+                    <group expand="0" string="Group By">
+                        <filter string="Employee" name="filter_by_employee" context="{'group_by':'employee_id'}"/>
+                        <filter name="filter_by_department" string="Department" context="{'group_by':'department_id'}"/>
+                        <filter string="Month" name="filter_by_month" context="{'group_by':'month'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+        
+        <record id="action_payroll_statement_lines" model="ir.actions.act_window">
+            <field name="name">Payroll Statement</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">payroll.statement.lines</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+        </record>
+</odoo>

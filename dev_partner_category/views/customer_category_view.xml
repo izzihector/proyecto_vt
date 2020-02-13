@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+    <!--tree-->
+	<record id="tree_customer_category" model="ir.ui.view">
+		<field name="name">tree.customer.category</field>
+		<field name="model">customer.vendor.category</field>
+		<field name="arch" type="xml">
+		    <tree string="Customer Category Tree" editable="bottom">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="type" invisible="1"/>
+ 		    </tree>
+		</field>
+	</record>
+	<!--Action-->
+	<record id="action_customer_category" model="ir.actions.act_window">
+        <field name="name">Customer Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="context">{'type': 'customer', 'default_type': 'customer'}</field>
+        <field name="domain">[('type','=','customer')]</field>
+        <field name="res_model">customer.vendor.category</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="tree_customer_category"/>
+    </record>
+    <!--Menus-->
+ 	<menuitem name ="Categoria de Clientes"
+              id="menu_customer_category"
+              parent="sale.sale_order_menu"
+              action="action_customer_category"
+              sequence="4"/>
+</odoo>
+        

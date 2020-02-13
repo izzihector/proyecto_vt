@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_product_landed_cost_form2" model="ir.ui.view">
+            <field name="name">product.template.landed.cost.form2</field>
+            <field name="model">product.template</field>
+            <!--<field name="inherit_id" ref="purchase.view_product_supplier_inherit"/>-->
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='group_lots_and_weight']" position="inside">
+                    <label for="arancel"/>
+                    <div class="o_row" name="arancel">
+                        <field name="arancel"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

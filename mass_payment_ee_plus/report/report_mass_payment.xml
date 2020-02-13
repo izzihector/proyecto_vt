@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <template id="report_mass_payment_document">
+            <t t-call="web.external_layout">
+            
+            <div class="page">
+                <div class="oe_structure"/>
+                <h2 style="text-align:center;"><strong>CUADRE DE COBROS </strong></h2>
+                <br/>
+                <div style="display: inline-block;width:50%"><span><strong>Cuadre No.: </strong></span><span t-field="o.name"/></div>
+                <!--<div style="display: inline-block;"><span><strong>Empresa: </strong></span><span t-field="o.company_id.name"/></div>-->
+                <div style="display: inline-block;"><span><strong>Fecha cobro: </strong></span><span t-field="o.payment_date"/></div>
+                <div style="display: inline-block;width:50%"><span><strong>Cobrado por: </strong></span><span t-field="o.partner_id.name"/></div>
+                <table class="table table-condensed" style="margin-top:20px;">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Fecha pago</th>
+                            <th>Factura #</th>
+                            <th>Cobro</th>
+                            <th>Forma pago</th>
+                            <th>Monto</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody class="sale_tbody">
+                        <t t-set="i_amount" t-value="0" />
+                        <t t-set="i_amount_cash" t-value="0" />
+                        <t t-set="i_amount_bank" t-value="0" />
+                        <t t-set="i_amount_card" t-value="0" />
+                        <t t-set="i_amount_credit" t-value="0" />
+                        <t t-set="i_amount_trans" t-value="0" />
+                        <t t-set="i_amount_credit_note" t-value="0" />
+                        <t t-set="i_amount_no" t-value="0" />
+                        <t t-set="i_amount_cancel" t-value="0" />
+                        <tr t-as="p" t-foreach="o.account_payment_ids">
+                            <t t-set="i_amount" t-value="i_amount+p.amount" />
+                            <t t-if="p.payment_form == 'cash'"> <t t-set="i_amount_cash" t-value="i_amount_cash+p.amount" /> </t>
+                            <t t-if="p.payment_form == 'bank'"> <t t-set="i_amount_bank" t-value="i_amount_bank+p.amount" /> </t>
+                            <t t-if="p.payment_form == 'card'"> <t t-set="i_amount_card" t-value="i_amount_card+p.amount" /> </t>
+                            <t t-if="p.payment_form == 'credit'"> <t t-set="i_amount_credit" t-value="i_amount_credit+p.amount" /> </t>
+                            <t t-if="p.payment_form == 'trans'"> <t t-set="i_amount_trans" t-value="i_amount_trans+p.amount" /> </t>
+                            <t t-if="p.payment_form == 'credit_note'"> <t t-set="i_amount_credit_note" t-value="i_amount_credit_note+p.amount" /> </t>
+                            <t t-if="p.payment_form == 'no'"> <t t-set="i_amount_no" t-value="i_amount_no+p.amount" /> </t>
+                            <t t-if="p.payment_form == 'cancel'"> <t t-set="i_amount_cancel" t-value="i_amount_cancel+p.amount" /> </t>
+                            <td> <span t-field="p.partner_id.name"/> </td>
+                            <td> <span t-field="p.payment_date"/> </td>
+                            <td> <span t-field="p.invoice_id.number"/> </td>
+                            <td> <span t-field="p.name"/> </td>
+                            <td> <span t-field="p.payment_form"/> </td>
+                            <td> <span t-field="p.amount"/> </td>
+                            <td> <span t-field="p.state"/> </td>
+                        </tr>
+                        <tr class='border-black' style="border-bottom: 1px solid black;">
+                            <td colspan='3'> </td>
+                            <td colspan='2'>
+                                Total General <br/>
+                                Ejectivo <br/>
+                                Cheque <br/>
+                                Transferencia <br/>
+                                Tarjeta <br/>
+                                Nota Crédito <br/>
+                                Crédito <br/>
+                                No cobrado <br/>
+                                Cancelado
+                            </td>
+                            <td colspan='2'>
+                                <strong><span t-esc="i_amount" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: user.company_id.currency_id}"/></strong> <br/>
+                                <strong><span t-esc="i_amount_cash" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: user.company_id.currency_id}"/></strong> <br/>
+                                <strong><span t-esc="i_amount_bank" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: user.company_id.currency_id}"/></strong> <br/>
+                                <strong><span t-esc="i_amount_trans" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: user.company_id.currency_id}"/></strong> <br/>
+                                <strong><span t-esc="i_amount_card" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: user.company_id.currency_id}"/></strong> <br/>
+                                <strong><span t-esc="i_amount_credit_note" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: user.company_id.currency_id}"/></strong> <br/>
+                                <strong><span t-esc="i_amount_credit" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: user.company_id.currency_id}"/></strong> <br/>
+                                <strong><span t-esc="i_amount_no" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: user.company_id.currency_id}"/></strong> <br/>
+                                <strong><span t-esc="i_amount_cancel" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: user.company_id.currency_id}"/></strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--FOOTER -->
+            <div class="footer">
+            <table style="width:100%;">
+                <tr style="text-align:center;">
+                    <td> _________________________________ </td>
+                    <td> _________________________________ </td>
+                </tr>
+                <tr style="text-align:center;">
+                    <td> Revisado Por </td>
+                    <td> Autorizado Por </td>
+                </tr></table>
+            </div>
+            <!--/FOOTER-->
+            </t>
+        </template>
+
+        <template id="report_mass_payment_temp">
+            <t t-call="web.html_container">
+	            <t t-foreach="doc_ids" t-as="o">
+	               <t t-call="mass_payment_ee_plus.report_mass_payment_document" t-lang="user.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+</odoo>

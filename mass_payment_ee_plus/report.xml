@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <report 
+            id="report_mass_payment"
+            string="Pagos multiples"
+            model="mass.payment"
+            report_type="qweb-pdf"
+            name="mass_payment_ee_plus.report_mass_payment_temp"
+            file="mass_payment_ee_plus.report_mass_payment_temp"
+            print_report_name="(object.name)"
+        />
+    </data>
+</openerp>
