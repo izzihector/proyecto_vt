@@ -38,6 +38,7 @@ class AccountBankStatement(models.Model):
             for line in self.line_ids:
                 statement_balance_start += line.amount
                 self.balance_end = statement_balance_start
+        self.difference = self.balance_end_real - self.balance_end  # MERPLUS
 
 
     @api.model

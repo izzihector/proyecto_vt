@@ -19,13 +19,13 @@
 				</xpath>
 				<xpath expr="//field[@name='journal_id']" position="after">
 					<field name="account_id" />
+				</xpath>
 				<xpath expr="//group[1]//group[2]//div[2]" position="after"> <!--MERPLUS INICIO-->
 					<label for="difference"/>
 					<div>
 						<field class="oe_inline" name="difference"/>
 					</div>
 				</xpath> <!--MERPLUS FIN-->
-				</xpath>
 				<xpath expr="//page[@name='statement_line_ids']" position="before">
 					<page string="Journal Entries" name="Move_lines">
 						<field name="move_line_ids" widget="many2many"
