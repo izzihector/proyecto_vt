@@ -3,7 +3,6 @@ passlib
 libsass
 werkzeug
 python-dateutil
-pywin32
 psycopg2
 pillow
 psutil
