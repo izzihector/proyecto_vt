@@ -15,4 +15,3 @@ suds-jurko==0.6
 ofxparse==0.16
 xlwt==1.3.0
 python-stdnum==1.11
-libssl1.0-dev
